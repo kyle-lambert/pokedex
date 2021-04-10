@@ -21,11 +21,13 @@ function App(props) {
     goToNextPage,
     goToPreviousPage,
     selectPokemon,
+    findPokemon,
+    fetchPokemon,
   } = usePokemon();
 
   const renderBranchJSX = () => {
     if (loading) return <LoadingSpinner />;
-    if (error) return <Error />;
+    if (error) return <Error message={error} />;
     return (
       <ul className="App__pokemon">
         {pokemon.map((p) => {
@@ -47,7 +49,7 @@ function App(props) {
       <main className="App__main">
         <Sidebar pokemon={selected} />
         <div className="App__content">
-          <Header />
+          <Header findPokemon={findPokemon} fetchPokemon={fetchPokemon} />
           <Pagination
             nextPageUrl={nextPageUrl}
             previousPageUrl={previousPageUrl}

@@ -9,14 +9,30 @@ import { buildPokemonJSON } from "../utils/helpers";
 const usePokemon = () => {
   const [pokemon, setPokemon] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState("");
   const [selected, setSelected] = React.useState(null);
-  const { nextPageUrl, previousPageUrl, setNextPageUrl, setPreviousPageUrl } = usePagination();
+  const {
+    nextPageUrl,
+    previousPageUrl,
+    setNextPageUrl,
+    setPreviousPageUrl,
+    resetState,
+  } = usePagination();
   const sourceRef = React.useRef(null);
+
+  const resetPokemonState = () => {
+    setPokemon([]);
+    setLoading(false);
+    setError("");
+    setSelected(null);
+    resetState();
+  };
 
   const fetchPokemon = React.useCallback(
     (url) => {
+      setError("");
       setLoading(true);
+
       getPokemonByUrl(url)
         .then((res) => {
           const data = res.data;
@@ -42,23 +58,49 @@ const usePokemon = () => {
               })
               .catch((err) => {
                 console.log(err);
-                setError(true);
+                setError("There was problem fetching all Pokemon infomation");
                 setLoading(false);
               });
           }
         })
         .catch((err) => {
           setLoading(false);
-          setError(true);
+          setError("Sorry we had a problem processing your request.");
 
           axios.isCancel((err) => {
             console.log("Axios request cancelled.");
-            setError(false);
+            setError("");
           });
         });
     },
     [setPreviousPageUrl, setNextPageUrl]
   );
+
+  const findPokemon = (name) => {
+    resetPokemonState();
+
+    const url = `${BASE_URL}/${name}`;
+    setLoading(true);
+
+    getPokemonByUrl(url)
+      .then((res) => {
+        const data = res.data;
+
+        if (!data) {
+          throw new Error("Pokemon does not exist.");
+        }
+
+        const pokemon = buildPokemonJSON(data);
+
+        setSelected(pokemon);
+        setPokemon([pokemon]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Sorry a Pokemon by that name does not exist.");
+        setLoading(false);
+      });
+  };
 
   const goToNextPage = () => {
     if (nextPageUrl) {
@@ -101,6 +143,8 @@ const usePokemon = () => {
     goToNextPage,
     goToPreviousPage,
     selectPokemon,
+    findPokemon,
+    fetchPokemon,
   };
 };
 
