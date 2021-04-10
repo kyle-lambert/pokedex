@@ -11,9 +11,9 @@ function Input({ label, id, ...rest }) {
       </label>
       <div className="Input__group">
         <input id={id} {...rest} className="Input__field" />
-        <div className="Input__icon">
+        <button type="submit" className="Input__btn">
           <SearchIcon />
-        </div>
+        </button>
       </div>
     </div>
   );

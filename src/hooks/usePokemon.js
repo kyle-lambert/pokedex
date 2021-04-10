@@ -29,11 +29,11 @@ const usePokemon = () => {
   };
 
   const fetchPokemon = React.useCallback(
-    (url) => {
+    (url, token) => {
       setError("");
       setLoading(true);
 
-      getPokemonByUrl(url)
+      getPokemonByUrl(url, token)
         .then((res) => {
           const data = res.data;
 
@@ -46,7 +46,7 @@ const usePokemon = () => {
 
           if (data?.results && Array.isArray(data.results)) {
             const pokemonPromises = data.results.map((p) => {
-              return getPokemonByUrl(p.url);
+              return getPokemonByUrl(p.url, token);
             });
 
             Promise.all(pokemonPromises)
@@ -76,13 +76,13 @@ const usePokemon = () => {
     [setPreviousPageUrl, setNextPageUrl]
   );
 
-  const findPokemon = (name) => {
+  const findPokemon = (name, token) => {
     resetPokemonState();
 
     const url = `${BASE_URL}/${name}`;
     setLoading(true);
 
-    getPokemonByUrl(url)
+    getPokemonByUrl(url, token)
       .then((res) => {
         const data = res.data;
 

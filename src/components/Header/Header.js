@@ -16,12 +16,10 @@ function Header({ findPokemon, fetchPokemon }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (searchField) {
-      console.log("submit");
-      findPokemon(searchField);
-    }
+    e.preventDefault(e);
+    findPokemon(searchField);
   };
+
   return (
     <header className="Header">
       <img src={PokemonLogo} alt="Pokemon Logo" className="Header__img" />

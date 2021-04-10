@@ -29,7 +29,7 @@
     }
   }
 
-  &__icon {
+  &__btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -38,24 +38,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: none;
+    padding: 0.2rem;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      svg {
+        fill: $accent-red;
+      }
+    }
   }
-
-  // &__btn-submit {
-  //   outline: none;
-  //   padding: 0.2rem;
-  //   background-color: transparent;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   outline: none;
-  //   border: none;
-
-  //   &:hover {
-  //     svg {
-  //       fill: $accent-red;
-  //     }
-  //   }
-  // }
 
   &__icon {
     flex-shrink: 0;
