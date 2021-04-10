@@ -1,0 +1,8 @@
+@import "./styles/resets";
+@import "./styles/typography";
+
+@font-face {
+  font-family: "PKMN RBYGSC";
+  src: local("PKMN RBYGSC"), url("./assets/fonts/PKMN RBYGSC.ttf") format("truetype");
+  font-weight: bold;
+}
