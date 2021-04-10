@@ -11,15 +11,4 @@
     width: 12rem;
     height: auto;
   }
-
-  &__input {
-    font-size: inherit;
-    background-color: inherit;
-    outline: none;
-    border: none;
-    padding: 1.4rem 0.2rem;
-    color: $text-primary;
-    border-bottom: 2px solid $text-primary;
-    min-width: 24rem;
-  }
 }
