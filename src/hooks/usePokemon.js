@@ -43,6 +43,7 @@ const usePokemon = () => {
               .catch((err) => {
                 console.log(err);
                 setError(true);
+                setLoading(false);
               });
           }
         })
