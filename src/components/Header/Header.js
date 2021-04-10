@@ -27,7 +27,9 @@ function Header({ findPokemon, fetchPokemon }) {
   const handleSubmit = (e) => {
     e.preventDefault(e);
     sourceRef.current = axios.CancelToken.source();
-    findPokemon(searchField, sourceRef.current.token);
+    if (searchField) {
+      findPokemon(searchField, sourceRef.current.token);
+    }
   };
 
   React.useEffect(() => {
