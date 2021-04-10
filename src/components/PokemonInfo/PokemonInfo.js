@@ -1,8 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./PokemonInfo.scss";
 
 import Badge from "../Badge/Badge";
 import Stat from "../Stat/Stat";
+
+PokemonInfo.propTypes = {
+  pokemon: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    defaultImage: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    types: PropTypes.array.isRequired,
+    moves: PropTypes.number.isRequired,
+    abilities: PropTypes.array.isRequired,
+  }),
+};
 
 function PokemonInfo({ pokemon }) {
   return (

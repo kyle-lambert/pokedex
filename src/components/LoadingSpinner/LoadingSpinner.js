@@ -1,7 +1,7 @@
 import React from "react";
 import "./LoadingSpinner.scss";
 
-function LoadingSpinner(props) {
+function LoadingSpinner() {
   return (
     <div className="LoadingSpinner">
       <div className="LoadingSpinner__outer">

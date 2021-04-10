@@ -1,7 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Card.scss";
 
 import Badge from "../Badge/Badge";
+
+Card.propTypes = {
+  pokemon: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    defaultImage: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    types: PropTypes.array.isRequired,
+    moves: PropTypes.number.isRequired,
+    abilities: PropTypes.array.isRequired,
+  }),
+  isSelected: PropTypes.bool,
+  handlePokemonSelect: PropTypes.func.isRequired,
+};
 
 function Card({ pokemon, isSelected, handlePokemonSelect }) {
   const handleClick = () => {

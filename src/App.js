@@ -10,7 +10,7 @@ import Error from "./components/Error/Error";
 
 import usePokemon from "./hooks/usePokemon";
 
-function App(props) {
+function App() {
   const {
     pokemon,
     loading,
@@ -51,6 +51,7 @@ function App(props) {
         <div className="App__content">
           <Header findPokemon={findPokemon} fetchPokemon={fetchPokemon} />
           <Pagination
+            loading={loading}
             nextPageUrl={nextPageUrl}
             previousPageUrl={previousPageUrl}
             handleNextPage={goToNextPage}

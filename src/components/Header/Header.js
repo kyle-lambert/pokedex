@@ -1,9 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Header.scss";
 import PokemonLogo from "../../assets/images/PokemonLogo.svg";
 import { BASE_URL } from "../../utils/constants";
 
 import Input from "../Input/Input";
+
+Header.propTypes = {
+  findPokemon: PropTypes.func.isRequired,
+  fetchPokemon: PropTypes.func.isRequired,
+};
 
 function Header({ findPokemon, fetchPokemon }) {
   const [searchField, setSearchField] = React.useState("");

@@ -1,5 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Stat.scss";
+
+Stat.propTypes = {
+  stat: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+  }),
+};
 
 function Stat({ stat }) {
   const barProgressStyles = {
