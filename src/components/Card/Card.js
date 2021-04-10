@@ -11,7 +11,7 @@ function Card({ pokemon, isSelected, handlePokemonSelect }) {
   return (
     <li className={`Card ${isSelected ? "Card--active" : null}`} onClick={handleClick}>
       <div className="Card__img-wrapper">
-        <img src={pokemon.image} alt="Pokemon" className="Card__img" />
+        <img src={pokemon.defaultImage} alt="Pokemon" className="Card__img" />
       </div>
       <div className="Card__content">
         <span className="Card__number">{`#${pokemon.id}`}</span>

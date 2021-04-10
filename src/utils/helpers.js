@@ -19,6 +19,7 @@ const buildAbilities = (abilities) => {
 };
 
 export const buildPokemonJSON = (pokemon) => {
+  console.log(pokemon);
   const obj = {
     name: pokemon.name,
     id: pokemon.id,
@@ -28,6 +29,7 @@ export const buildPokemonJSON = (pokemon) => {
     abilities: buildAbilities(pokemon.abilities),
     stats: buildStats(pokemon.stats),
     types: buildTypes(pokemon.types),
+    defaultImage: pokemon.sprites.front_default,
     image: `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`,
   };
 
