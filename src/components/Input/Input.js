@@ -26,7 +26,7 @@ function Input({ label, id, onChange, value, placeholder }) {
           onChange={onChange}
           className="Input__field"
         />
-        <button type="submit" className="Input__btn">
+        <button type="submit" title="Submit" className="Input__btn">
           <SearchIcon />
         </button>
       </div>

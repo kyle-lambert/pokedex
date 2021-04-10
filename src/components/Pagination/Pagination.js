@@ -42,12 +42,14 @@ function Pagination({ loading, nextPageUrl, previousPageUrl, handleNextPage, han
   return (
     <div className="Pagination">
       <button
+        title="Previous page"
         disabled={!previousPageUrl || disablePrevious || loading}
         onClick={handlePreviousClick}
         className="Pagination__btn">
         Previous
       </button>
       <button
+        title="Next page"
         disabled={!nextPageUrl || disableNext || loading}
         onClick={handleNextClick}
         className="Pagination__btn">

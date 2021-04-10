@@ -3,16 +3,23 @@
 .Card {
   border: 2px solid $layout-secondary;
   display: flex;
+  transition: transform 100ms ease, background-color 100ms ease, color 100ms ease;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
 
   &--active {
     background-color: $layout-secondary;
     color: $text-white;
+    cursor: none;
   }
 
   &:hover {
     background-color: $layout-secondary;
     color: $text-white;
     cursor: pointer;
+  }
+
+  &:hover:not(&--active) {
+    transform: scale(1.02);
   }
 
   &__img-wrapper {
