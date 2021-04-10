@@ -11,6 +11,7 @@ const usePokemon = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [selected, setSelected] = React.useState(null);
+  const sourceRef = React.useRef(null);
   const {
     nextPageUrl,
     previousPageUrl,
@@ -18,7 +19,6 @@ const usePokemon = () => {
     setPreviousPageUrl,
     resetState,
   } = usePagination();
-  const sourceRef = React.useRef(null);
 
   const resetPokemonState = () => {
     setPokemon([]);
@@ -37,10 +37,6 @@ const usePokemon = () => {
         .then((res) => {
           const data = res.data;
 
-          if (!data) {
-            throw new Error("Incorrect response.");
-          }
-
           setNextPageUrl(data.next);
           setPreviousPageUrl(data.previous);
 
@@ -58,7 +54,7 @@ const usePokemon = () => {
               })
               .catch((err) => {
                 console.log(err);
-                setError("There was problem fetching all Pokemon infomation");
+                setError("There was problem fetching all your Pokemon infomation");
                 setLoading(false);
               });
           }
@@ -85,11 +81,6 @@ const usePokemon = () => {
     getPokemonByUrl(url, token)
       .then((res) => {
         const data = res.data;
-
-        if (!data) {
-          throw new Error("Pokemon does not exist.");
-        }
-
         const pokemon = buildPokemonJSON(data);
 
         setSelected(pokemon);
@@ -99,6 +90,11 @@ const usePokemon = () => {
       .catch((err) => {
         setError("Sorry a Pokemon by that name does not exist.");
         setLoading(false);
+
+        axios.isCancel((err) => {
+          console.log("Axios request cancelled.");
+          setError("");
+        });
       });
   };
 

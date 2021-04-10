@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import "./Header.scss";
 import PokemonLogo from "../../assets/images/PokemonLogo.svg";
@@ -13,18 +14,29 @@ Header.propTypes = {
 
 function Header({ findPokemon, fetchPokemon }) {
   const [searchField, setSearchField] = React.useState("");
+  const sourceRef = React.useRef(null);
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
     if (!e.target.value) {
-      fetchPokemon(BASE_URL);
+      sourceRef.current = axios.CancelToken.source();
+      fetchPokemon(BASE_URL, sourceRef.current.token);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
-    findPokemon(searchField);
+    sourceRef.current = axios.CancelToken.source();
+    findPokemon(searchField, sourceRef.current.token);
   };
+
+  React.useEffect(() => {
+    return () => {
+      if (sourceRef.current !== null) {
+        sourceRef.current.cancel();
+      }
+    };
+  }, []);
 
   return (
     <header className="Header">

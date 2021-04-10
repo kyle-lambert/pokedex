@@ -13,18 +13,31 @@ Pagination.propTypes = {
 function Pagination({ loading, nextPageUrl, previousPageUrl, handleNextPage, handlePreviousPage }) {
   const [disableNext, setDisableNext] = React.useState(false);
   const [disablePrevious, setDisablePrevious] = React.useState(false);
+  const disableNextRef = React.useRef(null);
+  const disablePreviousRef = React.useRef(null);
 
   const handleNextClick = () => {
     setDisableNext(true);
     handleNextPage();
-    setTimeout(() => setDisableNext(false), 500);
+    disableNextRef.current = setTimeout(() => setDisableNext(false), 500);
   };
 
   const handlePreviousClick = () => {
     setDisablePrevious(true);
     handlePreviousPage();
-    setTimeout(() => setDisablePrevious(false), 500);
+    disablePreviousRef.current = setTimeout(() => setDisablePrevious(false), 500);
   };
+
+  React.useEffect(() => {
+    return () => {
+      if (disablePreviousRef.current !== null) {
+        clearTimeout(disablePreviousRef.current);
+      }
+      if (disableNextRef.current !== null) {
+        clearTimeout(disableNextRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="Pagination">
