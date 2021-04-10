@@ -1,0 +1,42 @@
+@import "../../styles/variables";
+
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+
+  &__btn {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.2rem;
+    background-color: $accent-red;
+    color: $text-white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 100ms ease, background-color 100ms ease, color 100ms ease;
+
+    &:hover {
+      background-color: $layout-secondary;
+      color: $text-white;
+      transform: scale(1.05);
+
+      &:disabled {
+        transform: unset;
+        color: $text-white;
+        background-color: $accent-red;
+      }
+    }
+
+    &:active {
+      transform: scale(1);
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: auto;
+    }
+  }
+}
