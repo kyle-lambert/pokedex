@@ -49,7 +49,7 @@ function App() {
       <main className="App__main">
         <Sidebar pokemon={selected} />
         <div className="App__content">
-          <Header findPokemon={findPokemon} fetchPokemon={fetchPokemon} />
+          <Header findPokemon={findPokemon} fetchPokemon={fetchPokemon} loading={loading} />
           <Pagination
             loading={loading}
             nextPageUrl={nextPageUrl}

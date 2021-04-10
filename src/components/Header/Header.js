@@ -10,9 +10,10 @@ import Input from "../Input/Input";
 Header.propTypes = {
   findPokemon: PropTypes.func.isRequired,
   fetchPokemon: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
-function Header({ findPokemon, fetchPokemon }) {
+function Header({ findPokemon, fetchPokemon, loading }) {
   const [searchField, setSearchField] = React.useState("");
   const sourceRef = React.useRef(null);
 
@@ -25,9 +26,9 @@ function Header({ findPokemon, fetchPokemon }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(e);
+    e.preventDefault();
     sourceRef.current = axios.CancelToken.source();
-    if (searchField) {
+    if (searchField && !loading) {
       findPokemon(searchField, sourceRef.current.token);
     }
   };
