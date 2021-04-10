@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.Sidebar {
+  background-color: $layout-white;
+  height: 100%;
+  width: 425px;
+  order: 2;
+}
